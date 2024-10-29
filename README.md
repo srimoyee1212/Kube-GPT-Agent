@@ -43,3 +43,92 @@ Upon receiving a query:
 ### 6. Deployment and Testing Recommendations
 To ensure robustness, the agent can be tested on Minikube with test applications deployed to confirm responses match expectations. Testing on Minikube provides a realistic Kubernetes environment, allowing potential issues to be identified and resolved before wider deployment.
 
+## Local Setup
+
+### Prerequisites
+1. **Python 3.10**: Make sure Python 3.10 is installed.
+   - Install Python [here](https://www.python.org/downloads/).
+   
+2. **Kubernetes Cluster Access**: Ensure you have access to a Kubernetes cluster (e.g., using Minikube or a remote cluster).
+   - **Minikube**: You can install Minikube by following [these instructions](https://minikube.sigs.k8s.io/docs/start/).
+   - After starting Minikube, confirm the Kubernetes config file is located at `~/.kube/config`.
+
+3. **OpenAI API Key**: You’ll need an API key from OpenAI to use GPT-4.
+   - [Sign up for OpenAI](https://platform.openai.com/) and generate an API key.
+   - Set the API key as an environment variable:  
+     ```bash
+     export OPENAI_API_KEY="your_openai_api_key"
+     ```
+
+4. **Install Dependencies**: Install the required Python libraries.
+   ```bash
+   pip install flask kubernetes openai
+   ```
+
+
+
+### Running the AI Agent
+**Start the Flask Server**
+To start the server, navigate to the directory where app.py is located and run:
+
+```bash
+python app.py
+```
+
+The server should now be running locally on `http://localhost:8000`. If successful, you should see output similar to:
+
+```bash
+ * Running on http://0.0.0.0:8000/ (Press CTRL+C to quit)
+```
+
+### Local Testing
+esting the Agent Locally
+Example Queries Using curl
+Once the server is running, you can test the agent by making HTTP POST requests to http://localhost:8000/query. Each query should be submitted in JSON format with a query key, as shown in the examples below.
+
+For each example, open a terminal and replace your_query_here with the specific question or command you want to test.
+
+1. Check the Status of a Pod
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "What is the status of the pod named nginx?"}'
+```
+
+2. List All Pods in the Default Namespace
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "List all pods in the default namespace"}'
+```
+
+3. Show Logs of a Specific Pod
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "Show me logs for pod nginx"}'
+```
+
+4. List All Nodes in the Cluster
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "List all nodes in the cluster"}'
+```
+
+5. List All Services in the Default Namespace
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "List all services in the default namespace"}'
+```
+
+6. Count Running Pods in the Default Namespace
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "How many pods are running in the default namespace?"}'
+```
+
+7. List All Deployments in the Default Namespace
+
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "List all deployments in the default namespace"}'
+```
+
+
+
