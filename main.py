@@ -101,7 +101,8 @@ class KubernetesQueryProcessor:
         }
 
     def get_pod_status(self, pod_name: str, namespace: str = "default") -> str:
-        """Get status of a specific pod"""
+      """Get status of a specific pod"""
+      logger.debug(f"Fetching status for pod: {pod_name} in namespace: {namespace}")
         with k8s_error_handling():
             pod = self.v1.read_namespaced_pod(pod_name, namespace)
             return pod.status.phase
