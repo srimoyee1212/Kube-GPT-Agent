@@ -62,7 +62,7 @@ To ensure robustness, the agent can be tested on Minikube with test applications
 
 4. **Install Dependencies**: Install the required Python libraries.
    ```bash
-   pip install flask kubernetes openai
+   pip install -r requirements.txt
    ```
 
 
