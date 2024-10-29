@@ -72,7 +72,7 @@ To ensure robustness, the agent can be tested on Minikube with test applications
 To start the server, navigate to the directory where app.py is located and run:
 
 ```bash
-python app.py
+python main.py
 ```
 
 The server should now be running locally on `http://localhost:8000`. If successful, you should see output similar to:
