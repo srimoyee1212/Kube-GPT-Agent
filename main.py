@@ -9,7 +9,12 @@ import json
 
 logging.basicConfig(level=logging.DEBUG, 
                     format='%(asctime)s %(levelname)s - %(message)s',
-                    filename='agent.log', filemode='a')
+                    handlers=[
+                      logging.FileHandler("agent.log", mode='a'),
+                      logging.StreamHandler()  # Enables console output
+                    ]
+                   )
+
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
